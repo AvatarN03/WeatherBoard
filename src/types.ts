@@ -36,7 +36,7 @@ export type DailyWeather = {
 };
 
 export type AirQuality = {
-  aqi: number; // 1–5 or numeric index
+  aqi: number; 
   pm2_5: number;
   pm10: number;
   no2: number;
@@ -71,6 +71,8 @@ export interface WeatherData {
 
 export type WeatherStore = {
   weatherData: WeatherData | null;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 
   getWeatherByCityName: (city: string) => Promise<void>;
 

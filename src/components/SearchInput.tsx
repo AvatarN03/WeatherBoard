@@ -1,13 +1,15 @@
-import { Loader2, Search, X } from "lucide-react"
 import { useState } from "react";
+import { Loader2, Search, X } from "lucide-react"
+
 import useWeather from "../context/useWeather";
 
 type SearchInputProps = {
     className?: string
     autoFocus?: boolean
+    onSearchComplete?: () => void
 }
 
-export const SearchInput = ({ className = "", autoFocus = false }: SearchInputProps) => {
+export const SearchInput = ({ className = "", autoFocus = false, onSearchComplete }: SearchInputProps) => {
 
     const [loading, setLoading] = useState(false);
     const { getWeatherByCityName } = useWeather();
@@ -24,6 +26,7 @@ export const SearchInput = ({ className = "", autoFocus = false }: SearchInputPr
         setLoading(false);
 
         setCity(""); // clear input
+        onSearchComplete?.(); // close dialog on mobile
     };
 
     return (

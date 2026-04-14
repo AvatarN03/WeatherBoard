@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Search, X } from "lucide-react"
+
 import { CurrentLocation } from "./CurrentLocation"
 import { SearchInput } from "./SearchInput"
 
@@ -15,22 +16,22 @@ export const Header = () => {
             alt="Weatherboard Logo"
             className="w-8 h-8 mr-2"
           />
-          <h1 className="text-base hover:text-purple-300 text-purple-100 font-semibold">
+          <h1 className="text-2xl md:text-base hover:text-purple-300 text-purple-100 font-semibold">
             <span className="text-purple-400">W</span>
-            <span className="hidden md:inline-flex">eather</span> {" "}
+            <span className="hidden md:inline-flex font-light">eather</span> {" "}
             <span className="text-purple-400">B</span>
-            <span className="hidden md:inline-flex">oard</span>
+            <span className="hidden md:inline-flex font-light">oard</span>
           </h1>
         </div>
 
         <SearchInput className="hidden md:flex" />
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <button
             type="button"
             aria-label="Open search"
             onClick={() => setIsSearchDialogOpen(true)}
-            className="md:hidden flex items-center justify-center rounded-lg border border-purple-500/30 bg-purple-900/40 p-2 text-purple-200 hover:bg-purple-800/40 transition-colors"
+            className="md:hidden flex items-center justify-center   text-purple-200 "
           >
             <Search className="w-5 h-5" />
           </button>
@@ -47,7 +48,7 @@ export const Header = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Search city"
-            className="mt-20 rounded-xl border border-purple-500/30 bg-purple-950/60 backdrop-blur-sm p-3"
+            className="mt-20 rounded-xl border border-purple-500/30 bg-purple-950/30 backdrop-blur-sm p-3"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-2 flex items-center justify-between">
@@ -61,7 +62,7 @@ export const Header = () => {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <SearchInput autoFocus className="max-w-none" />
+            <SearchInput autoFocus className="max-w-none" onSearchComplete={() => setIsSearchDialogOpen(false)} />
           </div>
         </div>
       )}
