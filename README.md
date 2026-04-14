@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# WeatherBoard 🌤️
 
-Currently, two official plugins are available:
+A modern, responsive weather dashboard built with **React**, **TypeScript**, and **Zustand**. Get real-time weather forecasts and current conditions with a clean, intuitive interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![WeatherBoard Screenshot](/public/dashboard.png)  
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Real-time weather data** from OpenWeather API
+- **5-day forecast** with hourly breakdown
+- **Responsive design** – works on desktop, tablet, and mobile
+- **Clean UI** with dynamic backgrounds based on weather conditions
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+[**View Live Demo**](https://weather-board-js.vercel.app/) 
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Frontend**: React 19 + TypeScript
+- **State Management**: Zustand
+- **Styling**: CSS Modules
+- **API**: OpenWeather API
+- **Build Tool**: Vite
+- **Linting**: ESLint (TypeScript-aware rules)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AvatarN03/WeatherBoard.git
+   cd WeatherBoard
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Get an API key**
+   - Sign up at [OpenWeather](https://openweathermap.org/api)
+   - Copy your API key
+
+4. **Set up environment variables**
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_OPENWEATHER_API_KEY=your_api_key_here
+   ```
+
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 🧪 Scripts
+
+- `npm run dev` – Start dev server with HMR
+- `npm run build` – Build for production
+- `npm run preview` – Preview production build locally
+- `npm run lint` – Run ESLint
+
+## 📁 Project Structure
+
+```
+WeatherBoard/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── stores/         # Zustand state stores
+│   ├── services/       # API calls and data formatting
+│   ├── types/          # TypeScript type definitions
+│   ├── utils/          # Helper functions
+│   ├── App.tsx
+│   └── main.tsx
+├── public/
+├── index.html
+├── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 API Reference
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project uses the [OpenWeather API](https://openweathermap.org/api):
+- **Current Weather Data** – `https://api.openweathermap.org/data/2.5/weather`
+- **5-day / 3-hour Forecast** – `https://api.openweathermap.org/data/2.5/forecast`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📱 Responsive Breakpoints
+
+- **Mobile**: < 640px
+- **Tablet**: 640px – 1024px
+- **Desktop**: > 1024px
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the **MIT License**.
+
+## 👤 Author
+
+**Prashanth Naidu** (AvatarN03)
+- GitHub: [@AvatarN03](https://github.com/AvatarN03)
+- Project Link: [https://github.com/AvatarN03/WeatherBoard](https://github.com/AvatarN03/WeatherBoard)
+
+## 🙏 Acknowledgments
+
+- Weather data provided by [OpenWeather](https://openweathermap.org/)
+- Built with [Vite](https://vitejs.dev/) + [React](https://reactjs.org/)
+
+---
+
+⭐️ **If you found this project helpful, give it a star on GitHub!** ⭐️
+
