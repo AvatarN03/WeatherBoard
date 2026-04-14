@@ -1,4 +1,4 @@
-import React from 'react'
+
 import type { AirQuality } from '../types'
 import { Wind } from 'lucide-react'
 

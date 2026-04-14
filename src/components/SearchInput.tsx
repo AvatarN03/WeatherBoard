@@ -36,7 +36,7 @@ export const SearchInput = ({ className = "", autoFocus = false }: SearchInputPr
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="Search for a city..."
                     autoFocus={autoFocus}
-                    className="bg-transparent outline-none text-sm text-purple-300 font-semibold placeholder-purple-300/60 py-1 px-2 w-full flex flex-1 w-full"
+                    className="bg-transparent outline-none text-sm text-purple-300 font-semibold placeholder-purple-300/60 py-1 px-2 w-full flex flex-1"
                 />
                 {
                     loading && city.trim() &&
