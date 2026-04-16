@@ -1,39 +1,33 @@
 
 import { Wind } from 'lucide-react'
 
+import { AQILevel } from './AQILevel'
+import { PollutantItem } from './PollutantItem'
+
 import type { AirQuality } from '../types'
 
 export const AQI = ({ data }: { data: AirQuality }) => {
 
     return (
         <div className="bg-purple-800/20 border-2 border-purple-500/20 backdrop-blur-sm p-4 rounded-lg h-full w-full">
-            <div className="flex items-center justify-between mb-4">
-                <h2 className="text-purple-200 font-semibold">Air Quality Index</h2>
-                <p className="text-sm text-purple-900 font-bold bg-yellow-300 px-3 py-1 rounded-full">{data.level}</p>
+            <div className="flex items-center justify-between mb-1">
+                <h2 className="text-purple-200 font-semibold">
+                    Air Quality Index
+                </h2>
+                <AQILevel level={data.level} />
             </div>
+
+            <p className="text-xs text-yellow-500 mb-3">
+                All values in µg/m³
+            </p>
             <div className="flex items-start gap-4">
                 <Wind className="w-10 h-10 text-purple-400 shrink-0 mt-1" />
                 <div className="flex flex-wrap gap-8 w-full">
-                    <div className="space-y-2 group cursor-pointer">
-                        <h1 className="text-3xl font-light text-purple-100 group-hover:text-purple-400 transition-all duration-100">{data.pm2_5}</h1>
-                        <p className="text-sm group-hover:text-yellow-400  text-purple-200 transition-all duration-50">PM2.5</p>
-                    </div>
-                    <div className="space-y-2 group cursor-pointer">
-                        <h1 className="text-3xl font-light text-purple-100 group-hover:text-purple-400 transition-all duration-100">{data.so2}</h1>
-                        <p className="text-sm group-hover:text-yellow-400  text-purple-200 transition-all duration-50">SO2</p>
-                    </div>
-                    <div className="space-y-2 group cursor-pointer">
-                        <h1 className="text-3xl font-light text-purple-100 group-hover:text-purple-400 transition-all duration-100">{data.no2}</h1>
-                        <p className="text-sm group-hover:text-yellow-400  text-purple-200 transition-all duration-50">NO2</p>
-                    </div>
-                    <div className="space-y-2 group cursor-pointer">
-                        <h1 className="text-3xl font-light text-purple-100 group-hover:text-purple-400 transition-all duration-100">{data.o3}</h1>
-                        <p className="text-sm group-hover:text-yellow-400  text-purple-200 transition-all duration-50">O3</p>
-                    </div>
-                    <div className="space-y-2 group cursor-pointer">
-                        <h1 className="text-3xl font-light text-purple-100 group-hover:text-purple-400 transition-all duration-100">{data.co}</h1>
-                        <p className="text-sm group-hover:text-yellow-400  text-purple-200 transition-all duration-50">CO</p>
-                    </div>
+                    <PollutantItem type="pm2_5" value={data.pm2_5} />
+                    <PollutantItem type="so2" value={data.so2} />
+                    <PollutantItem type="no2" value={data.no2} />
+                    <PollutantItem type="o3" value={data.o3} />
+                    <PollutantItem type="co" value={data.co} />
                 </div>
             </div>
         </div>

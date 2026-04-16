@@ -2,7 +2,7 @@
 
 export const Skeleton = () => {
     return (
-        <div className="flex gap-4 items-start justify-start">
+        <div className="flex flex-col md:flex-row gap-4 items-start justify-start p-4">
             <div className="w-full md:w-1/4 space-y-4">
                 {/* Card 1 */}
                 <div className="w-full h-64 rounded-xl skeleton" />

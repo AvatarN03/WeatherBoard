@@ -43,7 +43,7 @@ export type AirQuality = {
   so2: number;
   o3: number;
   co: number;
-  level: "Good" | "Moderate" | "Poor";
+  level: "Good" | "Fair" | "Moderate" | "Poor" | "Very Poor";
 };
 
 export type Astro = {

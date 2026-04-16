@@ -16,15 +16,84 @@ import {
   CloudFog,
   type LucideIcon,
 } from "lucide-react";
+import type { AirQuality } from "../types";
 
 
 //AQI
-export const getAQILevel = (aqi: number): "Good" | "Moderate" | "Poor" => {
-  if (aqi <= 2) return "Good";
-  if (aqi <= 3) return "Moderate";
-  return "Poor";
+export const getAQILevel = (
+  aqi: number
+): AirQuality["level"] => {
+  switch (aqi) {
+    case 1:
+      return "Good";
+    case 2:
+      return "Fair";
+    case 3:
+      return "Moderate";
+    case 4:
+      return "Poor";
+    case 5:
+      return "Very Poor";
+    default:
+      return "Good";
+  }
 };
 
+export const getAQIColor = (level: string) => {
+  switch (level) {
+    case "Good":
+      return "bg-green-500 text-white";
+    case "Fair":
+      return "bg-lime-400 text-black";
+    case "Moderate":
+      return "bg-yellow-400 text-black";
+    case "Poor":
+      return "bg-orange-500 text-white";
+    case "Very Poor":
+      return "bg-red-600 text-white";
+    default:
+      return "bg-gray-400 text-white";
+  }
+};
+
+export const pollutantConfig = {
+  pm2_5: {
+    label: "PM2.5",
+    desc: "Fine particles that enter lungs and bloodstream.",
+    safe: 12,
+    moderate: 35,
+  },
+  so2: {
+    label: "SO₂",
+    desc: "Gas from burning fossil fuels.",
+    safe: 20,
+    moderate: 80,
+  },
+  no2: {
+    label: "NO₂",
+    desc: "Traffic-related gas harmful to lungs.",
+    safe: 40,
+    moderate: 100,
+  },
+  o3: {
+    label: "O₃",
+    desc: "Ground-level ozone affecting breathing.",
+    safe: 100,
+    moderate: 160,
+  },
+  co: {
+    label: "CO",
+    desc: "Reduces oxygen delivery in body.",
+    safe: 4400,
+    moderate: 9400,
+  },
+};
+
+export const getColor = (value: number, safe: number, moderate: number) => {
+  if (value <= safe) return "text-green-400";
+  if (value <= moderate) return "text-yellow-400";
+  return "text-red-400";
+}
 
 // Day 
 export const getDayFromDateShort = (date: string) => {
