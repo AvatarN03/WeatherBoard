@@ -65,6 +65,22 @@ const App = () => {
         )
       }
 
+      <footer className='p-2 text-center border-t-2 border-slate-600 w-[85%] mx-auto mt-4'>
+        <h1>Weather Board &copy; {new Date().getFullYear()}</h1>
+        <p className="text-center text-sm text-purple-200 py-2">
+          Made with <span className="text-red-500">♥</span> by{" "}
+          <a
+            href="https://github.com/AvatarN03"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-300 hover:text-yellow-400 hover:underline transition-colors tracking-wider"
+          >
+            AvatarN03
+          </a>
+        </p>
+
+      </footer>
+
     </main>
   )
 }

@@ -21,7 +21,7 @@ export const WeatherMap = ({ lat, lon }: { lat: number; lon: number }) => {
   return (
     <MapContainer
       center={center}
-      zoom={10}
+      zoom={11}
       style={{ height: "300px", width: "100%" }}
       className="rounded-lg overflow-hidden"
     >

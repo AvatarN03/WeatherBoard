@@ -4,12 +4,12 @@ import type { HourlyWeather } from "../types";
 
 export const HourlyForecast = ({ hourly }: { hourly: HourlyWeather[] }) => {
     return (
-        <div className="space-y-4">
-            <h3 className="text-sm font-medium tracking-widest uppercase text-purple-200">
+        <div className="space-y-4 py-4">
+            <h3 className="text-sm font-medium tracking-widest uppercase text-purple-200 pb-8">
                 Today · Hourly
             </h3>
 
-            <div className="flex gap-2 overflow-x-auto pb-4 custom-scroll">
+            <div className="flex gap-2 overflow-x-auto pb-8 custom-scroll">
                 {hourly.map((h, i) => {
                     const WindIcon = GetWindIcon(h.wind_direction);
                     return (
