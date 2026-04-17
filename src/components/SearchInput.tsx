@@ -2,13 +2,9 @@ import { useEffect, useState } from "react";
 import { Loader2, Search, X } from "lucide-react"
 
 import useWeather from "../context/useWeather";
-import type { CitySuggestion } from "../types";
+import type { CitySuggestion, SearchInputProps } from "../types";
 
-type SearchInputProps = {
-    className?: string
-    autoFocus?: boolean
-    onSearchComplete?: () => void
-}
+
 
 export const SearchInput = ({ className = "", autoFocus = false, onSearchComplete }: SearchInputProps) => {
 
@@ -57,7 +53,7 @@ export const SearchInput = ({ className = "", autoFocus = false, onSearchComplet
             } catch (err) {
                 console.error(err);
             }
-        }, 400);
+        }, 1200);
 
         return () => clearTimeout(timer);
     }, [city, fetchCityNames]);

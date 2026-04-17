@@ -5,9 +5,9 @@ import toast from "react-hot-toast";
 
 import getWeatherByCity from "../actions/getWeatherByCity";
 import getWeatherByCoords from "../actions/getWeatherByCoords";
+import { fetchCityNames as fetchCityNamesAPI } from "../actions/fetchCityNames";
 
 import type { CitySuggestion, WeatherStore } from "../types";
-import { fetchCityNames as fetchCityNamesAPI } from "../actions/fetchCityNames";
 
 const useWeather = create<WeatherStore>()(
   persist(

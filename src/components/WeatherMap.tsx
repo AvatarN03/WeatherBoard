@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import type { LatLngExpression } from "leaflet";
+
 import "leaflet/dist/leaflet.css";
 
 export const WeatherMap = ({ lat, lon }: { lat: number; lon: number }) => {

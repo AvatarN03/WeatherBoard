@@ -89,3 +89,8 @@ export type CitySuggestion = {
   lon: number;
 };
 
+export type SearchInputProps = {
+    className?: string
+    autoFocus?: boolean
+    onSearchComplete?: () => void
+}
