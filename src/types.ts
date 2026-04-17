@@ -36,7 +36,7 @@ export type DailyWeather = {
 };
 
 export type AirQuality = {
-  aqi: number; 
+  aqi: number;
   pm2_5: number;
   pm10: number;
   no2: number;
@@ -68,7 +68,6 @@ export interface WeatherData {
   highlights: Highlights;
 }
 
-
 export type WeatherStore = {
   weatherData: WeatherData | null;
   loading: boolean;
@@ -76,5 +75,17 @@ export type WeatherStore = {
 
   getWeatherByCityName: (city: string) => Promise<void>;
 
-  getWeatherByCoordsData: () => Promise<void>;
+  getWeatherByCoordsData: ({ lat, lon }: { lat?: number; lon?: number }) => Promise<void>;
+
+  fetchCityNames: (city: string) => Promise<CitySuggestion[]>;
 };
+
+export type CitySuggestion = {
+  name: string;
+  state?: string;
+  country: string;
+  label: string;
+  lat: number;
+  lon: number;
+};
+

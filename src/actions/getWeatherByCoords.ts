@@ -8,6 +8,7 @@ const getWeatherFullByCoords = async (lat: number, lon: number) => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   );
   const currentData = await currentRes.json();
+  console.log("Current Weather Data:", currentData);
 
   if (!currentRes.ok) {
     throw new Error(currentData.message || "Failed to fetch current weather");

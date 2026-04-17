@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2, Search, X } from "lucide-react"
 
 import useWeather from "../context/useWeather";
+import type { CitySuggestion } from "../types";
 
 type SearchInputProps = {
     className?: string
@@ -12,7 +13,9 @@ type SearchInputProps = {
 export const SearchInput = ({ className = "", autoFocus = false, onSearchComplete }: SearchInputProps) => {
 
     const [loading, setLoading] = useState(false);
-    const { getWeatherByCityName } = useWeather();
+    const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
+
+    const { getWeatherByCityName, fetchCityNames, getWeatherByCoordsData } = useWeather();
 
     const [city, setCity] = useState("");
 
@@ -23,16 +26,46 @@ export const SearchInput = ({ className = "", autoFocus = false, onSearchComplet
 
         setLoading(true);
         await getWeatherByCityName(city);
+        setSuggestions([]);
         setLoading(false);
 
-        setCity(""); // clear input
-        onSearchComplete?.(); // close dialog on mobile
+        setCity("");
+        onSearchComplete?.();
     };
 
+    const handleSelectSuggestion = async (suggestion: CitySuggestion) => {
+        await getWeatherByCoordsData({
+            lat: suggestion.lat,
+            lon: suggestion.lon
+        });
+
+        setCity("");
+        setSuggestions([]);
+        onSearchComplete?.();
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(async () => {
+            if (!city.trim()) {
+                setSuggestions([]);
+                return;
+            }
+
+            try {
+                const result = await fetchCityNames(city);
+                setSuggestions(result);
+            } catch (err) {
+                console.error(err);
+            }
+        }, 400);
+
+        return () => clearTimeout(timer);
+    }, [city, fetchCityNames]);
+
     return (
-        <div className={`rounded-md border w-full max-w-md  border-purple-500/30 px-2 py-1 ${className}`}>
+        <div className={`relative rounded-md border w-full max-w-md border-purple-500/30 px-2 py-1 ${className}`}>
             <form onSubmit={handleSearch} className="flex items-center w-full">
-                <Search className="w-5 h-5 text-purple-400" />
+                <Search className="w-5 h-5 text-purple-400" onBlur={() => setTimeout(() => setSuggestions([]), 150)} />
                 <input
                     type="text"
                     value={city}
@@ -51,6 +84,22 @@ export const SearchInput = ({ className = "", autoFocus = false, onSearchComplet
                         <X className="w-4 h-4" />
                     </button>
                 }
+                {suggestions.length > 0 && (
+                    <div className="absolute left-0 right-0 top-full mt-1 bg-gray-900 border border-purple-500/30 rounded-md shadow-lg z-10">
+                        {suggestions.map((suggestion, index) => (
+                            <div
+                                key={index}
+                                onClick={() => handleSelectSuggestion(suggestion)}
+                                className="px-3 py-2 text-sm text-purple-300 hover:bg-purple-700/40 cursor-pointer"
+                            >
+                                {suggestion.label}
+                            </div>
+                        ))}
+                        <p className="px-3 py-2 text-xs text-blue-200 border-t border-purple-500/20 italic">
+                            Can't find your city? Try searching a nearby location.
+                        </p>
+                    </div>
+                )}
             </form>
         </div>
     )

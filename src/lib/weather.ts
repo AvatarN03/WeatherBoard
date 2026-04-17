@@ -99,12 +99,16 @@ export const getColor = (value: number, safe: number, moderate: number) => {
 export const getDayFromDateShort = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
+    day: "numeric",
+    month: "short",
   });
 };
 
 export const getDayFromDateLong = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
     weekday: "long",
+    day: "numeric",
+    month: "short",
   });
 };
 

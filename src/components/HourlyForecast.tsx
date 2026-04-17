@@ -1,34 +1,59 @@
 import { WeatherIcon } from "./WeatherIcon";
-
 import { getHourOnly, getWindDirection, GetWindIcon } from "../lib/weather";
 import type { HourlyWeather } from "../types";
-
 
 export const HourlyForecast = ({ hourly }: { hourly: HourlyWeather[] }) => {
     return (
         <div className="space-y-4">
-            <h3 className="text-purple-300">Today Hourly</h3>
+            <h3 className="text-sm font-medium tracking-widest uppercase text-purple-200">
+                Today · Hourly
+            </h3>
 
-            <div className="flex gap-3 overflow-x-auto pb-8 custom-scroll">
+            <div className="flex gap-2 overflow-x-auto pb-4 custom-scroll">
                 {hourly.map((h, i) => {
                     const WindIcon = GetWindIcon(h.wind_direction);
                     return (
-                        <div key={i} className="flex flex-col gap-3 shrink-0">
-                            <div className="p-4 bg-neutral-900 border border-purple-500/20 backdrop-blur-sm rounded-lg min-w-25 text-center hover:bg-purple-800/20">
-                                <p className="text-sm text-purple-200 mb-2">{getHourOnly(h.time)}</p>
-                                <WeatherIcon icon={h.icon} className="w-8 h-8 text-purple-200 mx-auto mb-2" />
-                                <p className="text-purple-200 font-semibold">{h.temp} °C</p>
+                        <div
+                            key={i}
+                            className="group shrink-0 w-22 rounded-2xl border border-white/5 bg-white/10 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-200 overflow-hidden"
+                        >
+                            {/* Time header */}
+                            <div className="px-3 pt-3 pb-2 text-center">
+                                <p className="text-[11px] font-medium tracking-wide text-purple-100 uppercase">
+                                    {getHourOnly(h.time)}
+                                </p>
                             </div>
-                            <div className="p-4 bg-purple-950 border border-purple-500/20 hover:bg-purple-950/40 backdrop-blur-sm rounded-lg min-w-25 text-center" title={String(h.wind_direction)}>
-                                <p className="text-sm text-purple-200 mb-2">{getHourOnly(h.time)}</p>
-                                <WindIcon className="w-10 h-10 text-purple-200 mx-auto mb-2" />
-                                <p className="text-purple-200 font-medium">{getWindDirection(h.wind_direction)}</p>
-                                <p className="text-purple-200 font-semibold">{h.wind_speed} m/s</p>
+
+                            {/* Weather section */}
+                            <div className="flex flex-col items-center gap-1 px-3 pb-3">
+                                <WeatherIcon
+                                    icon={h.icon}
+                                    className="w-7 h-7 text-purple-200 drop-shadow-[0_0_6px_rgba(168,85,247,0.4)]"
+                                />
+                                <p className="text-sm font-semibold text-white tabular-nums">
+                                    {h.temp}°
+                                </p>
+                            </div>
+
+                            {/* Divider */}
+                            <div className="mx-3 h-px bg-white/15" />
+
+                            {/* Wind section */}
+                            <div
+                                className="flex flex-col items-center gap-1 px-3 pt-2.5 pb-3"
+                                title={`${h.wind_direction}°`}
+                            >
+                                <WindIcon className="w-5 h-5 text-purple-200/80 group-hover:text-purple-300 transition-colors" />
+                                <p className="text-[10px] font-medium text-yellow-300 tracking-wide">
+                                    {getWindDirection(h.wind_direction)}
+                                </p>
+                                <p className="text-[11px] font-semibold text-purple-200/90 tabular-nums">
+                                    {h.wind_speed} m/s
+                                </p>
                             </div>
                         </div>
-                    )
-                }
-                )}
+                    );
+                })}
             </div>
         </div>
     );
