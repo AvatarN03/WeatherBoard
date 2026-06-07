@@ -17,7 +17,7 @@ export const sendWelcomeEmail = inngest.createFunction(
     const email = event.data.email as string;
 
     await resend.emails.send({
-      from: "WeatherBoard <newsletter@yourdomain.com>",
+      from: "onboarding@resend.dev",
       to: email,
       subject: "Welcome to WeatherBoard Newsletter! 🌤️",
       html: `
