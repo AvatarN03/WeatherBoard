@@ -1,5 +1,5 @@
-import clientPromise from "../../src/lib/mongo";
-import { inngest } from "../client";
+import clientPromise from "../../src/lib/mongo.js";
+import { inngest } from "../client.js";
 import { Resend } from "resend";
 
 
