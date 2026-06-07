@@ -14,7 +14,7 @@ export default function NewsletterForm() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, city }),
       });
 
       const data = await res.json();
@@ -24,6 +24,7 @@ export default function NewsletterForm() {
       } else {
         toast.success("Subscribed! Check your inbox 🎉");
         setEmail("");
+        setCity("");
       }
     } catch {
       toast.error("Network error, please try again");
@@ -32,7 +33,7 @@ export default function NewsletterForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 w-full flex-col">
       <input
         placeholder="Email"
         type="email"

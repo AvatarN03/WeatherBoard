@@ -2,16 +2,19 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import clientPromise from "../src/lib/mongo.js";
 import { inngest } from "../inngest/client.js";
 
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email } = req.body;
+  const { email, city } = req.body;  // ← add city
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "Invalid email" });
+  }
+
+  if (!city) {
+    return res.status(400).json({ error: "City is required" });
   }
 
   try {
@@ -26,14 +29,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await collection.insertOne({
       email,
+      city,          // ← save city
       active: true,
       subscribedAt: new Date(),
     });
 
-    // Fire Inngest event → triggers welcome email function
     await inngest.send({
       name: "newsletter/subscribed",
-      data: { email },
+      data: { email, city },  // ← pass city to inngest
     });
 
     return res.status(200).json({ success: true });
