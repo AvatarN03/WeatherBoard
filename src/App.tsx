@@ -12,6 +12,7 @@ import DataNotAvailable from './components/DNA';
 
 import useWeather from './context/useWeather';
 import { WeatherMap } from './components/WeatherMap';
+import NewsletterForm from './components/NewsLetterForm';
 
 const App = () => {
 
@@ -67,6 +68,9 @@ const App = () => {
 
                 <div className="bg-purple-650/30 backdrop-blur-sm border border-purple-500/20 p-4 lg:p-8 w-full  overflow-x-scroll rounded-lg">
                   <HourlyForecast hourly={weatherData.hourly} />
+                </div>
+                <div className="bg-purple-650/30 backdrop-blur-sm border border-purple-500/20 p-4 lg:p-8 w-full rounded-lg">
+                  <NewsletterForm />  
                 </div>
 
 
