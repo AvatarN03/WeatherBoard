@@ -52,7 +52,7 @@ export const Highlights = ({ data }: { data: WeatherData }) => {
                 </div>
 
                 <div className="col-span-1">
-                    <div className="space-y-4 bg-neutral-900 border border-purple-500/20 hover:border-purple-500/80 backdrop-blur-sm p-4 rounded-lg h-full">
+                    <div className="space-y-4 bg-indigo-900/40 border-3 border-purple-500/60 hover:border-purple-500/80 backdrop-blur-sm p-4 rounded-lg h-full">
                         <p className="text-purple-300 text-sm">Feels Like</p>
                         <div className="flex flex-col">
                             <Thermometer className="w-6 h-6 text-purple-400 mb-2" />

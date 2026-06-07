@@ -23,7 +23,7 @@ export const WeatherMap = ({ lat, lon }: { lat: number; lon: number }) => {
       center={center}
       zoom={11}
       style={{ height: "300px", width: "100%" }}
-      className="rounded-lg overflow-hidden"
+      className="rounded-lg overflow-hidden border-4 border-purple-500"
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker position={center} icon={customIcon}>

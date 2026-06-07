@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className='px-4 py-2 h-16 flex items-center justify-between gap-2 sticky top-0 z-50  backdrop-blur-xl'>
+      <header className='px-4 py-2 h-16 flex items-center justify-between gap-2 sticky top-0 z-50  backdrop-blur-xl border-b border-neutral-300/60 '>
         <div className="flex items-center cursor-pointer shrink-0" title="WeatherBoard">
           <img
             src="/logo-dark.svg"
