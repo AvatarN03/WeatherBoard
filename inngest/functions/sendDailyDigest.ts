@@ -173,7 +173,7 @@ export const sendDailyDigest = inngest.createFunction(
     id: "daily-weather-digest",
     name: "Daily Weather Digest",
     triggers: [
-      { cron: "*/1 * * * *" }, // ← every minute (for quick testing)
+      { cron: "8 0 * * *" }, // ← every day at 8 AM (for quick testing)
     ],
   },
   async () => {

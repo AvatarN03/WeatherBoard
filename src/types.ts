@@ -94,3 +94,9 @@ export type SearchInputProps = {
     autoFocus?: boolean
     onSearchComplete?: () => void
 }
+
+export type InngestEvent = {
+  email: string;
+  city: string;  
+}
+
