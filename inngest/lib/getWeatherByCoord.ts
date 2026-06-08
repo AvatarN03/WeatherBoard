@@ -1,29 +1,26 @@
-import { getAQILevel } from "../lib/weather";
-import type { WeatherData } from "../types";
+import { getAQILevel } from "../../src/lib/weather";
 
+const API_KEY = process.env.OPENWEATHER_API_KEY;
 
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
-
-const getWeatherFullByCity = async (city: string) => {
-  // 🔹 1. Get current weather (also gives lat/lon)
+const getWeatherFullByCoords = async (lat: number, lon: number) => {
+  // 🔹 1. Current weather
   const currentRes = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`,
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   );
   const currentData = await currentRes.json();
+  console.log("Current Weather Data:", currentData);
 
   if (!currentRes.ok) {
     throw new Error(currentData.message || "Failed to fetch current weather");
   }
 
-  const { lat, lon } = currentData.coord;
-
-  // 🔹 2. Fetch forecast + AQI in parallel
+  // 🔹 2. Forecast + AQI (parallel)
   const [forecastRes, aqiRes] = await Promise.all([
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     ),
     fetch(
-      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
     ),
   ]);
 
@@ -38,9 +35,9 @@ const getWeatherFullByCity = async (city: string) => {
     throw new Error(aqiData.message || "Failed to fetch AQI");
   }
 
-  // 🔹 3. Transform Data (clean structure for UI)
+  // 🔹 3. Transform (same as city version)
 
-  const weatherData: WeatherData = {
+  const weatherData = {
     location: {
       city: currentData.name,
       country: currentData.sys.country,
@@ -104,9 +101,8 @@ const getWeatherFullByCity = async (city: string) => {
       feels_like: currentData.main.feels_like,
     },
   };
-  console.log(weatherData);
 
   return weatherData;
 };
 
-export default getWeatherFullByCity;
+export default getWeatherFullByCoords;

@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import {
     Body, Container, Head, Heading, Html,
     Img, Link, Preview, Row, Column, Section, Text,
@@ -7,22 +9,108 @@ import { features } from "../constant";
 
 
 
-// ─── Styles ──────────────────────────────────────────────────────────────────
-const main = { backgroundColor: "#0f0f1a", fontFamily: "Arial, sans-serif" };
-const container = { maxWidth: "520px", margin: "0 auto", padding: "40px 16px" };
-const card = { background: "#1a1a2e", borderRadius: "20px", padding: "32px", marginBottom: "16px", border: "1px solid #2a2a3a" };
-const heading = { color: "#a78bfa", fontSize: "26px", margin: "0", letterSpacing: "-0.5px" };
-const subtext = { color: "#6b7280", fontSize: "13px", margin: "6px 0 0" };
-const cardTitle = { color: "#fff", fontSize: "22px", margin: "0 0 8px" };
-const bodyText = { color: "#9ca3af", fontSize: "15px", lineHeight: "1.7", margin: "0 0 20px" };
-const sectionLabel = { color: "#6b7280", fontSize: "12px", margin: "0 0 12px", textTransform: "uppercase" as const, letterSpacing: "0.08em" };
-const featureTitle = { color: "#fff", fontSize: "14px", fontWeight: "bold", margin: "0" };
-const featureDesc = { color: "#6b7280", fontSize: "13px", margin: "2px 0 0" };
-const ctaButton = { display: "inline-block", background: "#7c3aed", color: "#fff", textDecoration: "none", padding: "14px 32px", borderRadius: "10px", fontSize: "15px", fontWeight: "bold" };
-const stat = { textAlign: "center" as const, padding: "0 8px" };
-const statValue = { color: "#a78bfa", fontSize: "20px", fontWeight: "bold", margin: "0" };
-const statLabel = { color: "#6b7280", fontSize: "12px", margin: "4px 0 0" };
-const footer = { color: "#374151", fontSize: "12px", lineHeight: "1.6", margin: "0" };
+
+const main: React.CSSProperties = {
+  backgroundColor: "#0f0f1a",
+  fontFamily: "Arial, sans-serif",
+};
+
+const container: React.CSSProperties = {
+  maxWidth: "520px",
+  margin: "0 auto",
+  padding: "40px 16px",
+};
+
+const card: React.CSSProperties = {
+  background: "#1a1a2e",
+  borderRadius: "20px",
+  padding: "32px",
+  marginBottom: "16px",
+  border: "1px solid #2a2a3a",
+};
+
+const heading: React.CSSProperties = {
+  color: "#a78bfa",
+  fontSize: "26px",
+  margin: "0",
+  letterSpacing: "-0.5px",
+};
+
+const subtext: React.CSSProperties = {
+  color: "#6b7280",
+  fontSize: "13px",
+  margin: "6px 0 0",
+};
+
+const cardTitle: React.CSSProperties = {
+  color: "#fff",
+  fontSize: "22px",
+  margin: "0 0 8px",
+};
+
+const bodyText: React.CSSProperties = {
+  color: "#9ca3af",
+  fontSize: "15px",
+  lineHeight: "1.7",
+  margin: "0 0 20px",
+};
+
+const sectionLabel: React.CSSProperties = {
+  color: "#6b7280",
+  fontSize: "12px",
+  margin: "0 0 12px",
+  textTransform: "uppercase",
+  letterSpacing: "0.08em",
+};
+
+const featureTitle: React.CSSProperties = {
+  color: "#fff",
+  fontSize: "14px",
+  fontWeight: "bold",
+  margin: "0",
+};
+
+const featureDesc: React.CSSProperties = {
+  color: "#6b7280",
+  fontSize: "13px",
+  margin: "2px 0 0",
+};
+
+const ctaButton: React.CSSProperties = {
+  display: "inline-block",
+  background: "#7c3aed",
+  color: "#fff",
+  textDecoration: "none",
+  padding: "14px 32px",
+  borderRadius: "10px",
+  fontSize: "15px",
+  fontWeight: "bold",
+};
+
+const stat: React.CSSProperties = {
+  textAlign: "center",
+  padding: "0 8px",
+};
+
+const statValue: React.CSSProperties = {
+  color: "#a78bfa",
+  fontSize: "20px",
+  fontWeight: "bold",
+  margin: "0",
+};
+
+const statLabel: React.CSSProperties = {
+  color: "#6b7280",
+  fontSize: "12px",
+  margin: "4px 0 0",
+};
+
+const footer: React.CSSProperties = {
+  color: "#374151",
+  fontSize: "12px",
+  lineHeight: "1.6",
+  margin: "0",
+};
 
 export function WelcomeEmail({ email, city }: InngestEvent) {
     return (

@@ -75,7 +75,13 @@ export type WeatherStore = {
 
   getWeatherByCityName: (city: string) => Promise<void>;
 
-  getWeatherByCoordsData: ({ lat, lon }: { lat?: number; lon?: number }) => Promise<void>;
+  getWeatherByCoordsData: ({
+    lat,
+    lon,
+  }: {
+    lat?: number;
+    lon?: number;
+  }) => Promise<void>;
 
   fetchCityNames: (city: string) => Promise<CitySuggestion[]>;
 };
@@ -90,13 +96,32 @@ export type CitySuggestion = {
 };
 
 export type SearchInputProps = {
-    className?: string
-    autoFocus?: boolean
-    onSearchComplete?: () => void
-}
+  className?: string;
+  autoFocus?: boolean;
+  onSearchComplete?: () => void;
+};
 
 export type InngestEvent = {
   email: string;
-  city: string;  
+  city: string;
+};
+
+export type Subscriber = {
+  email: string;
+  city: string;
+  lat: number;
+  lon: number;
+  active: boolean;
+  unsubscribed: Date | null;
+  subscribedAt: Date;
+};
+
+
+
+export interface LocationGroup {
+  _id: string; // "lat,lon" tile key
+  lat: number;
+  lon: number;
+  subscribers: { email: string; city: string }[];
 }
 

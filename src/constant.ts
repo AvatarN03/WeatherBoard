@@ -5,3 +5,5 @@ export const features = [
   { icon: "🌿", title: "Air quality index",     desc: "PM2.5, AQI level and pollution breakdown" },
   { icon: "🌅", title: "Sunrise & sunset",      desc: "Know exactly when golden hour hits" },
 ];
+
+

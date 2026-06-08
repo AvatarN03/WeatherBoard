@@ -72,7 +72,7 @@ export default function NewsletterForm() {
 
         <button
           type="submit"
-          className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium transition-colors block ml-auto cursor-pointer" disabled={loading}>
+          className="px-4 py-2 rounded-lg disabled:cursor-not-allowed bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium transition-colors block ml-auto cursor-pointer" disabled={loading}>
           {loading ? "Subscribing..." : "Subscribe"}
         </button>
       </form >
