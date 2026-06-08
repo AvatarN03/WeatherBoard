@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render } from "@react-email/render";
 import { Resend } from "resend";
 import { inngest } from "../client.js";
@@ -9,7 +8,7 @@ import getWeatherFullByCoords from "../lib/getWeatherByCoord.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendDailyDigest = inngest.createFunction(
+export const sendDailyDigest = inngest.createFunction( 
   {
     id: "daily-weather-digest",
     name: "Daily Weather Digest",
@@ -43,7 +42,7 @@ export const sendDailyDigest = inngest.createFunction(
           resend.emails.send({
             from: "onboarding@resend.dev",
             to: sub.email,
-            subject: `Today's weather in ${weather.location.city} 🌤️`,
+            subject: `Today's weather in  ${weather.location.city} 🌤️`,
             html,
           })
         )

@@ -1,4 +1,3 @@
-import * as React from "react";
 
 import { render } from "@react-email/render";
 import type { InngestEvent } from "../../src/types.js";
@@ -6,7 +5,7 @@ import { WelcomeEmail } from "../../src/components/WelcomeEmail.js";
 import { inngest } from "../client.js";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY); 
 
 export const sendWelcomeEmail = inngest.createFunction(
   {
