@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Body, Container, Head, Heading, Html,
     Img, Link, Preview, Row, Column, Section, Text,
