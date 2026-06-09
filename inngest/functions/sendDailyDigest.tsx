@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render } from "@react-email/render";
 import { inngest } from "../client.js";
 import { getGroupedSubscribers } from "../../src/lib/getGroupSubscribers.js";
