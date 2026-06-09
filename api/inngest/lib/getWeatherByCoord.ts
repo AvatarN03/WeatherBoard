@@ -1,4 +1,4 @@
-import { getAQILevel } from "../../src/lib/weather";
+import { getAQILevel } from "../../../src/lib/weather";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
