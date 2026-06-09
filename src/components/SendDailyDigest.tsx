@@ -10,7 +10,7 @@ import type { WeatherData } from "../types";
 
 const body: React.CSSProperties = { margin: 0, padding: 0, background: "#0f0f1a", fontFamily: "Arial, sans-serif" };
 const container: React.CSSProperties = { maxWidth: 560, margin: "0 auto", padding: "32px 16px" };
-const card: React.CSSProperties = { background: "#1a1a2e", borderRadius: 16, padding: 18, marginBottom: 16 };
+const card: React.CSSProperties = { background: "#1a1a2e", borderRadius: 16, padding: 10, marginBottom: 16 };
 
 const heading: React.CSSProperties = { color: "#a78bfa", fontSize: 22, margin: 0 };
 const subtext: React.CSSProperties = { color: "#6b7280", fontSize: 13, margin: "6px 0 0" };
@@ -18,7 +18,6 @@ const cityHeading: React.CSSProperties = { color: "#fff", fontSize: 22, margin: 
 const conditionText: React.CSSProperties = { color: "#a78bfa", fontSize: 13, margin: "4px 0 0", textTransform: "capitalize" };
 const sectionTitle: React.CSSProperties = { color: "#a78bfa", fontSize: 13, margin: "0 0 12px", textTransform: "uppercase", letterSpacing: "0.05em" };
 
-const statCell: React.CSSProperties = { background: "#0f0f1a", borderRadius: 10, padding: 12, textAlign: "center" };
 const statLabel: React.CSSProperties = { color: "#6b7280", fontSize: 11, margin: "0 0 4px", textTransform: "uppercase" };
 const statValue: React.CSSProperties = { color: "#fff", fontSize: 22, fontWeight: "bold", margin: 0 };
 const statSub: React.CSSProperties = { color: "#6b7280", fontSize: 11, margin: "4px 0 0" };
@@ -26,7 +25,6 @@ const statSub: React.CSSProperties = { color: "#6b7280", fontSize: 11, margin: "
 const sunRow: React.CSSProperties = { display: "flex", justifyContent: "space-between", marginTop: 12, padding: "10px 16px", background: "#0f0f1a", borderRadius: 10 };
 const sunText: React.CSSProperties = { color: "#aaa", fontSize: 13, margin: 0 };
 
-const dailyCell: React.CSSProperties = { background: "#0f0f1a", borderRadius: 10, padding: 12, textAlign: "center" };
 
 const ctaButton: React.CSSProperties = {
     display: "inline-block", background: "#7c3aed", color: "#fff",
@@ -60,7 +58,16 @@ export function WeatherDigest({ weather }: { weather: WeatherData }) {
 
                     {/* Header */}
                     <Section style={{ textAlign: "center", marginBottom: 24 }}>
+                        <Link href={`${process.env.APP_URL}`} style={{ textDecoration: "none" }}>
+                        <Img
+                            src={`${process.env.APP_URL}/logo.svg`}
+                            width={64}
+                            height={64}
+                            alt="WeatherBoard Logo"
+                            style={{ borderRadius: "16px", margin: "0 auto 16px" }}
+                        />
                         <Heading style={heading}>🌤️ WeatherBoard</Heading>
+                        </Link>
                         <Text style={subtext}>Your daily weather digest</Text>
                     </Section>
 
@@ -84,11 +91,18 @@ export function WeatherDigest({ weather }: { weather: WeatherData }) {
                         {/* Stats row */}
                         <Row>
                             {[
-                                { label: "TEMP", value: `${current.temp}°C`, sub: `Feels ${Math.round(current.feels_like)}°C` },
-                                { label: "HUMIDITY", value: `${current.humidity}%`, sub: `Wind ${Math.round(current.wind_speed * 3.6)} km/h` },
-                                { label: "AIR QUALITY", value: airQuality.level, sub: `PM2.5 ${airQuality.pm2_5.toFixed(1)}` },
+                                { label: "TEMP", value: `${current.temp}°C`, sub: `Feels: ${Math.round(current.feels_like)}°C` },
+                                { label: "HUMIDITY", value: `${current.humidity}%`, sub: `Wind: ${Math.round(current.wind_speed * 3.6)} km/h` },
+                                { label: "AIR QUALITY", value: airQuality.level, sub: `PM2.5: ${airQuality.pm2_5.toFixed(1)}` },
                             ].map(({ label, value, sub }) => (
-                                <Column key={label} style={statCell}>
+                                <Column
+                                    key={label}
+                                    style={{
+                                        width: "33.33%",
+                                        padding: "0 6px",
+                                        background: "#0f0f1a", borderRadius: 10, textAlign: "center"
+                                    }}
+                                >
                                     <Text style={statLabel}>{label}</Text>
                                     <Text style={statValue}>{value}</Text>
                                     <Text style={statSub}>{sub}</Text>
@@ -135,24 +149,63 @@ export function WeatherDigest({ weather }: { weather: WeatherData }) {
                     {/* 5-day forecast */}
                     <Section style={{ ...card, marginBottom: 24 }}>
                         <Text style={sectionTitle}>5-DAY FORECAST</Text>
-                        <Row>
-                            {daily.map((item, i) => (
-                                <Column key={i} style={dailyCell}>
-                                    <Text style={{ color: "#6b7280", fontSize: 11, margin: "0 0 4px" }}>{item.date}</Text>
+
+                        {daily.map((item, i) => (
+                            <Row
+                                key={i}
+                                style={{
+                                    borderBottom: "1px solid #2a2a3a",
+                                    padding: "8px 0",
+                                }}
+                            >
+                                <Column style={{ width: "25%" }}>
+                                    <Text
+                                        style={{
+                                            color: "#fff",
+                                            fontSize: 12,
+                                            margin: 0,
+                                        }}
+                                    >
+                                        {item.date}
+                                    </Text>
+                                </Column>
+
+                                <Column style={{ width: "15%" }}>
                                     <Img
                                         src={`https://openweathermap.org/img/wn/${item.icon}.png`}
-                                        width={36} height={36} alt={item.weather}
+                                        width={30}
+                                        height={30}
+                                        alt={item.weather}
                                     />
-                                    <Text style={{ color: "#fff", fontSize: 14, fontWeight: "bold", margin: "4px 0" }}>
-                                        {item.max_temp}°{" "}
-                                        <span style={{ color: "#6b7280", fontWeight: "normal" }}>{item.min_temp}°</span>
+                                </Column>
+
+                                <Column style={{ width: "25%" }}>
+                                    <Text
+                                        style={{
+                                            color: "#fff",
+                                            fontSize: 13,
+                                            fontWeight: "bold",
+                                            margin: 0,
+                                        }}
+                                    >
+                                        {item.max_temp}° / {item.min_temp}°
                                     </Text>
-                                    <Text style={{ color: "#6b7280", fontSize: 11, margin: 0, textTransform: "capitalize" }}>
+                                </Column>
+
+                                <Column style={{ width: "35%" }}>
+                                    <Text
+                                        style={{
+                                            color: "#6b7280",
+                                            fontSize: 12,
+                                            margin: 0,
+                                            textTransform: "capitalize",
+                                        }}
+                                    >
                                         {item.weather}
                                     </Text>
                                 </Column>
-                            ))}
-                        </Row>
+                            </Row>
+                        ))}
                     </Section>
 
                     {/* CTA */}
@@ -168,7 +221,19 @@ export function WeatherDigest({ weather }: { weather: WeatherData }) {
                     <Text style={footer}>
                         You're receiving this because you subscribed to WeatherBoard.
                     </Text>
-                   
+
+                    <Text style={{ ...footer, marginTop: 8 }}>
+                        <Link
+                            href="__UNSUBSCRIBE_URL__"
+                            style={{
+                                color: "#6b7280",
+                                textDecoration: "underline",
+                            }}
+                        >
+                            Unsubscribe
+                        </Link>
+                    </Text>
+
                 </Container>
             </Body>
         </Html>

@@ -1,7 +1,7 @@
-// inngest/lib/getGroupedSubscribers.ts
+
+import clientPromise from "./mongo";
 
 import type { LocationGroup } from "../types";
-import clientPromise from "./mongo";
 
 
 export async function getGroupedSubscribers(): Promise<LocationGroup[]> {

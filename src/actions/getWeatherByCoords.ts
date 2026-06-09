@@ -5,7 +5,7 @@ const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const getWeatherFullByCoords = async (lat: number, lon: number) => {
   // 🔹 1. Current weather
   const currentRes = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
   );
   const currentData = await currentRes.json();
   console.log("Current Weather Data:", currentData);
@@ -17,10 +17,10 @@ const getWeatherFullByCoords = async (lat: number, lon: number) => {
   // 🔹 2. Forecast + AQI (parallel)
   const [forecastRes, aqiRes] = await Promise.all([
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
     ),
     fetch(
-      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
     ),
   ]);
 
@@ -68,16 +68,28 @@ const getWeatherFullByCoords = async (lat: number, lon: number) => {
     })),
 
     daily: forecastData.list
-      .filter((item: any) => item.dt_txt.includes("12:00:00"))
+      .map((item: any) => {
+        const utc = new Date(item.dt_txt);
+
+        // convert to local timezone using offset
+        const local = new Date(utc.getTime() + currentData.timezone * 1000);
+
+        return {
+          ...item,
+          localDate: local.toISOString().split("T")[0],
+          localHour: local.getUTCHours(),
+        };
+      })
+      .filter((item: any) => item.localHour === 12)
       .slice(0, 5)
       .map((item: any) => ({
-        date: item.dt_txt.split(" ")[0],
+        date: item.localDate,
         min_temp: Math.round(item.main.temp_min),
         max_temp: Math.round(item.main.temp_max),
         weather: item.weather[0].description,
         icon: item.weather[0].icon,
       })),
-
+      
     airQuality: {
       aqi: aqiData.list[0].main.aqi,
       pm2_5: aqiData.list[0].components.pm2_5,

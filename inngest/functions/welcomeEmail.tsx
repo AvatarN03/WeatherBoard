@@ -1,11 +1,10 @@
-
+import * as React from "react";
 import { render } from "@react-email/render";
 import type { InngestEvent } from "../../src/types.js";
 import { WelcomeEmail } from "../../src/components/WelcomeEmail.js";
 import { inngest } from "../client.js";
-import { Resend } from "resend";
+import { sendEmail } from "../lib/sendEmail.js";
 
-const resend = new Resend(process.env.RESEND_API_KEY); 
 
 export const sendWelcomeEmail = inngest.createFunction(
   {
@@ -22,11 +21,10 @@ export const sendWelcomeEmail = inngest.createFunction(
 
     const html = await render(<WelcomeEmail email={email} city={city} />);
 
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
+    await sendEmail({
       to: email,
       subject: "Welcome to WeatherBoard — You're all set! 🌤️",
-      html
+      html,
     });
 
     return { success: true, email };

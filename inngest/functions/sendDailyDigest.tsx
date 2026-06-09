@@ -1,14 +1,14 @@
+import * as React from "react";
 import { render } from "@react-email/render";
-import { Resend } from "resend";
 import { inngest } from "../client.js";
 import { getGroupedSubscribers } from "../../src/lib/getGroupSubscribers.js";
 import { WeatherDigest } from "../../src/components/SendDailyDigest.js";
 import getWeatherFullByCoords from "../lib/getWeatherByCoord.js";
+import { sendEmail } from "../lib/sendEmail.js";
 
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendDailyDigest = inngest.createFunction( 
+export const sendDailyDigest = inngest.createFunction(
   {
     id: "daily-weather-digest",
     name: "Daily Weather Digest",
@@ -34,16 +34,19 @@ export const sendDailyDigest = inngest.createFunction(
         continue;
       }
 
-      // ✅ Render once per location tile, send to all subscribers in group
-      const html = await render(<WeatherDigest weather={weather} />);
+      const html = await render(
+        <WeatherDigest weather={weather} />
+      );
 
       const emailResults = await Promise.allSettled(
         group.subscribers.map((sub) =>
-          resend.emails.send({
-            from: "onboarding@resend.dev",
+          sendEmail({
             to: sub.email,
-            subject: `Today's weather in  ${weather.location.city} 🌤️`,
-            html,
+            subject: `Today's weather in ${weather.location.city} 🌤️`,
+            html: html.replace(
+              "__UNSUBSCRIBE_URL__",
+              `${process.env.APP_URL}/unsubscribe?email=${encodeURIComponent(sub.email)}`
+            ),
           })
         )
       );

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^5.0.4",
     "@react-email/components": "^1.0.12",
     "@react-email/render": "^2.0.8",
     "@tailwindcss/vite": "^4.2.2",
@@ -22,7 +23,6 @@
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
     "react-leaflet": "^5.0.0",
-    "resend": "^6.12.4",
     "tailwindcss": "^4.2.2",
     "zustand": "^5.0.12"
   },

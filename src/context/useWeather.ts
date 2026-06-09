@@ -79,6 +79,7 @@ const useWeather = create<WeatherStore>()(
           set({ loading: true });
 
           const data = await getWeatherByCoords(finalLat!, finalLon!);
+          console.log(data)
 
           toast.success(
             lat && lon

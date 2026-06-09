@@ -105,15 +105,14 @@ export const getDayFromDateShort = (date: string) => {
   });
 };
 
+
 export const getDayFromDateLong = (date: string) => {
-  const d = new Date(date);
-
-  const weekday = d.toLocaleDateString("en-IN", { weekday: "long" });
-  const day = d.getDate();
-  const month = d.toLocaleDateString("en-IN", { month: "short" });
-  const year = d.getFullYear().toString().slice(-2);
-
-  return `${weekday}, ${day} ${month} '${year}`;
+  console.log(date);
+  return new Date(date).toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  });
 };
 
 
