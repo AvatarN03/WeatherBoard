@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:api && tsc -b && vite build",
-    "build:api": "esbuild api/inngest.ts api/subscribe.ts api/unsubscribe.ts --bundle --platform=node --format=esm --outdir=api/dist --external:inngest",
+   "build:api": "esbuild api/src/inngest.ts api/src/subscribe.ts api/src/unsubscribe.ts --bundle --platform=node --format=cjs --outdir=api/dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
