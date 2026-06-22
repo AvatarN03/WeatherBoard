@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:api && tsc -b && vite build",
+    "build:api": "esbuild api/inngest.ts api/subscribe.ts api/unsubscribe.ts --bundle --platform=node --format=esm --outdir=api/dist --external:inngest",
     "lint": "eslint .",
     "preview": "vite preview"
   },

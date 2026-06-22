@@ -1,13 +1,13 @@
 {
+  "functions": {
+    "api/dist/inngest.js": { "maxDuration": 300 },
+    "api/dist/subscribe.js": { "maxDuration": 30 },
+    "api/dist/unsubscribe.js": { "maxDuration": 30 }
+  },
   "rewrites": [
     {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
-  ],
-  "functions": {
-    "api/inngest.ts": { "maxDuration": 300 },
-    "api/subscribe.ts": { "maxDuration": 30 },
-    "api/unsubscribe.ts": { "maxDuration": 30 }
-  }
+  ]
 }
