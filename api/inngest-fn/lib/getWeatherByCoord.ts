@@ -1,6 +1,26 @@
-import { getAQILevel } from "../../../src/lib/weather.js";
+import { AirQuality } from "../../../src/types.js";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
+
+const getAQILevel = (
+  aqi: number
+): AirQuality["level"] => {
+  switch (aqi) {
+    case 1:
+      return "Good";
+    case 2:
+      return "Fair";
+    case 3:
+      return "Moderate";
+    case 4:
+      return "Poor";
+    case 5:
+      return "Very Poor";
+    default:
+      return "Good";
+  }
+};
+
 
 const getWeatherFullByCoords = async (lat: number, lon: number) => {
   // 🔹 1. Current weather
