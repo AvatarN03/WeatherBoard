@@ -3,7 +3,7 @@ import {
     Body, Container, Column, Head, Heading, Html,
     Img, Link, Preview, Row, Section, Text,
 } from "@react-email/components";
-import type { WeatherData } from "../../../src/types.js";
+import type { WeatherData } from "../../src/types.js";
 
 
 // ── Styles ────────────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-import { AirQuality } from "../../../src/types.js";
+import { AirQuality } from "../../src/types.js";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 

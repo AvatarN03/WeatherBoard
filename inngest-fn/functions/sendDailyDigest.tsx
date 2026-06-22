@@ -1,3 +1,4 @@
+import * as React from "react";
 import { render } from "@react-email/render";
 import { inngest } from "../client.js";
 import { WeatherDigest } from "../component/SendDailyDigest.js";

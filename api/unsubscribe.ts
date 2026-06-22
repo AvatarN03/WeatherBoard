@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import clientPromise from "./inngest-fn/lib/mongo.js";
+import clientPromise from "../inngest-fn/lib/mongo.js";
 
 export default async function handler(
   req: VercelRequest,

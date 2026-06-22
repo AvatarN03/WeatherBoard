@@ -1,5 +1,7 @@
+import * as React from "react";
+
 import { render } from "@react-email/render";
-import type { InngestEvent } from "../../../src/types.js";
+import type { InngestEvent } from "../../src/types.js";
 import { WelcomeEmail } from "../component/WelcomeEmail.js";
 import { inngest } from "../client.js";
 import { sendEmail } from "../lib/sendEmail.js";
