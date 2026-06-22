@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:api && tsc -b && vite build",
-   "build:api": "esbuild api/src/inngest.ts --bundle --platform=node --format=esm --outfile=api/inngest.js && esbuild api/src/subscribe.ts --bundle --platform=node --format=esm --outfile=api/subscribe.js && esbuild api/src/unsubscribe.ts --bundle --platform=node --format=esm --outfile=api/unsubscribe.js",
+   "build:api": "esbuild api/src/inngest.ts --bundle --platform=node --format=esm --outfile=api/inngest.js --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\" && esbuild api/src/subscribe.ts --bundle --platform=node --format=esm --outfile=api/subscribe.js --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\" && esbuild api/src/unsubscribe.ts --bundle --platform=node --format=esm --outfile=api/unsubscribe.js --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
