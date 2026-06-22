@@ -32390,7 +32390,7 @@ var require_lib3 = __commonJS({
   }
 });
 
-// api/unsubscribe.ts
+// api/src/unsubscribe.ts
 var unsubscribe_exports = {};
 __export(unsubscribe_exports, {
   default: () => handler
@@ -32407,7 +32407,7 @@ if (!global._mongoClientPromise) {
 var clientPromise = global._mongoClientPromise;
 var mongo_default = clientPromise;
 
-// api/unsubscribe.ts
+// api/src/unsubscribe.ts
 async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({

@@ -35659,7 +35659,7 @@ var require_index_umd = __commonJS({
   }
 });
 
-// api/subscribe.ts
+// api/src/subscribe.ts
 var subscribe_exports = {};
 __export(subscribe_exports, {
   default: () => handler
@@ -51783,7 +51783,7 @@ var inngest = new Inngest({
   name: "WeatherBoard"
 });
 
-// api/subscribe.ts
+// api/src/subscribe.ts
 async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
