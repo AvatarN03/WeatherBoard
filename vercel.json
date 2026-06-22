@@ -1,8 +1,8 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "functions": {
-    "api/dist/inngest.js": { "maxDuration": 300 },
-    "api/dist/subscribe.js": { "maxDuration": 30 },
-    "api/dist/unsubscribe.js": { "maxDuration": 30 }
+    "api/dist/*.js": { "maxDuration": 300 }
   },
   "rewrites": [
     {
