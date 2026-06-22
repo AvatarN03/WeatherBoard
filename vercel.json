@@ -1,8 +1,13 @@
 {
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/inngest.ts": { "maxDuration": 300 },
+    "api/subscribe.ts": { "maxDuration": 30 },
+    "api/unsubscribe.ts": { "maxDuration": 30 }
+  }
 }
