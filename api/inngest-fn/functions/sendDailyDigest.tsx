@@ -1,9 +1,9 @@
 import { render } from "@react-email/render";
 import { inngest } from "../client.js";
-import { getGroupedSubscribers } from "../../../src/lib/getGroupSubscribers.js";
-import { WeatherDigest } from "../../../src/components/SendDailyDigest.js";
+import { WeatherDigest } from "../component/SendDailyDigest.js";
 import getWeatherFullByCoords from "../lib/getWeatherByCoord.js";
 import { sendEmail } from "../lib/sendEmail.js";
+import { getGroupedSubscribers } from "../lib/getGroupSubscribers.js";
 
 
 

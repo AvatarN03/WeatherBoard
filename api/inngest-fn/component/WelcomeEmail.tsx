@@ -5,8 +5,8 @@ import {
     Img, Link, Preview, Row, Column, Section, Text,
 } from "@react-email/components";
 
-import type { InngestEvent } from "../types";
-import { features } from "../constant";
+import type { InngestEvent } from "../../../src/types";
+import { features } from "../../../src/constant";
 
 
 

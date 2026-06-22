@@ -21,5 +21,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "api", "api/inngest", "src/actions"]
+  "include": ["src", "api", "api/inngest-fn", "src/actions"]
 }

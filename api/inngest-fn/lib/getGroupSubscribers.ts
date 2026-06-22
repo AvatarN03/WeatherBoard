@@ -1,7 +1,6 @@
-
+import type { LocationGroup } from "../../../src/types";
 import clientPromise from "./mongo";
 
-import type { LocationGroup } from "../types";
 
 
 export async function getGroupedSubscribers(): Promise<LocationGroup[]> {
