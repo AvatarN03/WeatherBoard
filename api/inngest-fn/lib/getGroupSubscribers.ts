@@ -1,5 +1,5 @@
-import type { LocationGroup } from "../../../src/types";
-import clientPromise from "./mongo";
+import type { LocationGroup } from "../../../src/types.js";
+import clientPromise from "./mongo.js";
 
 
 
