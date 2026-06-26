@@ -12,7 +12,7 @@ export const sendDailyDigest = inngest.createFunction(
   {
     id: "daily-weather-digest",
     name: "Daily Weather Digest",
-    triggers: [{ cron: "8 0 * * *" }],
+    triggers: [{ cron: "30 2 * * *" }],
   },
   async () => {
     // ✅ Grouping done in Mongo — no client-side work

@@ -4,6 +4,7 @@ import {
     Img, Link, Preview, Row, Section, Text,
 } from "@react-email/components";
 import type { WeatherData } from "../../src/types.js";
+import { formatTime } from "../lib/formatTime.js";
 
 
 // ── Styles ────────────────────────────────────────────────────────────────────
@@ -40,12 +41,8 @@ const footer: React.CSSProperties = { color: "#374151", fontSize: 11, textAlign:
 export function WeatherDigest({ weather }: { weather: WeatherData }) {
     const { location, current, hourly, daily, airQuality, astro } = weather;
 
-    const sunrise = new Date(Number(astro.sunrise) * 1000).toLocaleTimeString("en-IN", {
-        hour: "2-digit", minute: "2-digit",
-    });
-    const sunset = new Date(Number(astro.sunset) * 1000).toLocaleTimeString("en-IN", {
-        hour: "2-digit", minute: "2-digit",
-    });
+    const sunrise = formatTime(astro.sunrise, location.timezone);
+    const sunset = formatTime(astro.sunset, location.timezone);
 
     const previewText = `Today's weather in ${location.city} — ${current.temp}°C, ${current.weather}`;
 
@@ -59,14 +56,14 @@ export function WeatherDigest({ weather }: { weather: WeatherData }) {
                     {/* Header */}
                     <Section style={{ textAlign: "center", marginBottom: 24 }}>
                         <Link href={`${process.env.APP_URL}`} style={{ textDecoration: "none" }}>
-                        <Img
-                            src={`${process.env.APP_URL}/logo.svg`}
-                            width={64}
-                            height={64}
-                            alt="WeatherBoard Logo"
-                            style={{ borderRadius: "16px", margin: "0 auto 16px" }}
-                        />
-                        <Heading style={heading}>🌤️ WeatherBoard</Heading>
+                            <Img
+                                src={`${process.env.APP_URL}/logo.svg`}
+                                width={64}
+                                height={64}
+                                alt="WeatherBoard Logo"
+                                style={{ borderRadius: "16px", margin: "0 auto 16px" }}
+                            />
+                            <Heading style={heading}>🌤️ WeatherBoard</Heading>
                         </Link>
                         <Text style={subtext}>Your daily weather digest</Text>
                     </Section>
