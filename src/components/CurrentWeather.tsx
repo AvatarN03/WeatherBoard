@@ -7,6 +7,10 @@ import type { WeatherData } from "../types";
 
 export const CurrentWeather = ({ data }: { data: WeatherData }) => {
   const WindIcon = GetWindIcon(data.current.wind_direction);
+  const currentDay =
+  data.daily.length > 0
+    ? getDayFromDateLong(data.daily[0].date)
+    : getDayFromDateLong(new Date());
   
   return (
     <div className="space-y-2 h-full ">
@@ -26,7 +30,7 @@ export const CurrentWeather = ({ data }: { data: WeatherData }) => {
           </div>
           <div className="flex items-center gap-3">
             <Calendar className="w-4 h-4 text-purple-400" />
-            <p className="text-purple-100 font-light text-lg underline underline-offset-2">{getDayFromDateLong(data.daily[0].date)}</p>
+            <p className="text-purple-100 font-light text-lg underline underline-offset-2">{currentDay}</p>
           </div>
         </div>
         <div className="space-y-4">

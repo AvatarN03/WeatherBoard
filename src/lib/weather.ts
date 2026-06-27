@@ -106,8 +106,7 @@ export const getDayFromDateShort = (date: string) => {
 };
 
 
-export const getDayFromDateLong = (date: string) => {
-  console.log(date);
+export const getDayFromDateLong = (date: string|Date) => {
   return new Date(date).toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
