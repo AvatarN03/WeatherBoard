@@ -4,6 +4,25 @@ import { getDayFromDateShort } from "../lib/weather";
 import type { DailyWeather } from "../types";
 
 export const DailyForecast = ({ daily }: { daily: DailyWeather[] }) => {
+
+  if(daily.length === 0) {
+    return (
+      <div className="flex flex-col space-y-3">
+        <div className="grid grid-cols-3 items-center gap-0 md:gap-2 px-2 py-2 rounded-lg border-2 border-purple-500/20 hover:border-yellow-200 transition-colors cursor-pointer">
+          <div className="space-y-4 flex flex-col items-start">
+            <WeatherIcon icon="unknown" className="w-6 h-6 " />
+            <p className="text-purple-300 text-sm whitespace-nowrap">No data</p>
+          </div>
+          <h3 className="text-purple-200 text-base font-semibold text-center">
+            -- °C
+          </h3>
+          <p className="text-purple-300 text-right text-base">--</p>
+        </div>
+      </div>
+    );
+  }
+
+  
   return (
     <div className="flex flex-col space-y-3">
       {daily.map((day, i) => (
